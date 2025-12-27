@@ -1,0 +1,6 @@
+streamlit
+trimesh
+numpy
+plotly
+scikit-image
+nibabel
