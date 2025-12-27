@@ -1,6 +1,6 @@
 streamlit
-trimesh
 numpy
-plotly
-scikit-image
 nibabel
+scikit-image
+trimesh
+plotly
