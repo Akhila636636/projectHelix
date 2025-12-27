@@ -44,18 +44,20 @@ if not uploaded_files:
 # --------------------------------------------------
 # Step 2: Load MRI volumes
 # --------------------------------------------------
+import io
+
 volumes = []
 
 with st.spinner("Loading MRI scans..."):
     for file in uploaded_files:
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".nii.gz") as tmp:
-            tmp.write(file.read())
-            tmp_path = tmp.name
+        file_bytes = file.read()
+        file_obj = io.BytesIO(file_bytes)
 
-        nii = nib.load(tmp_path)
+        nii = nib.load(file_obj)
         vol = nii.get_fdata()
-        volumes.append(vol)
 
+        volumes.append(vol)
+        
 st.success(f"{len(volumes)} MRI scan(s) loaded successfully")
 
 # --------------------------------------------------
